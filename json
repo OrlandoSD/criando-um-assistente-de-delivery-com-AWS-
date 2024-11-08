@@ -1,0 +1,21 @@
+{
+  "Comment": "Exemplo de Step Function para fluxo de entrega",
+  "StartAt": "ReceberPedido",
+  "States": {
+    "ReceberPedido": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:receber_pedido",
+      "Next": "ProcessarPagamento"
+    },
+    "ProcessarPagamento": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:processar_pagamento",
+      "Next": "DespacharPedido"
+    },
+    "DespacharPedido": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:despachar_pedido",
+      "End": true
+    }
+  }
+}
